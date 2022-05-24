@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { Header } from './components/Header';
 
-function App() {
-  return <h1>Home</h1>;
+export function App() {
+  return (
+    <div className='flex flex-col items-center'>
+      <Header />
+      <h1>Home</h1>
+    </div>
+  );
 }
-
-export default App;
