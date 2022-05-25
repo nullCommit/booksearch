@@ -9,6 +9,9 @@ module.exports = {
         accent: {
           300: '#1F2936',
         },
+        shadowText: {
+          300: '#7B8192',
+        },
       },
       fontFamily: {
         body: ['Inter'],
