@@ -4,7 +4,9 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          500: '#ec488d',
+          500: '#F72572',
+          700: '#DE2572',
+          800: '#BD2572',
         },
         accent: {
           300: '#1F2936',
@@ -18,5 +20,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
