@@ -12,6 +12,7 @@ module.exports = {
           300: '#1F2936',
         },
         shadowText: {
+          100: '#BBBBBB',
           300: '#7B8192',
         },
       },
