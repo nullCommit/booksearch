@@ -1,10 +1,11 @@
+import { Content } from './components/Content';
 import { Header } from './components/Header';
 
 export function App() {
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center relative'>
       <Header />
-      <h1>Home</h1>
+      <Content />
     </div>
   );
 }
