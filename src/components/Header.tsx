@@ -13,7 +13,7 @@ export function Header() {
   }
 
   return (
-    <div className='max-w-7xl h-28 mx-4 flex items-center gap-16 '>
+    <div className='max-w-7xl w-full h-28 mx-auto px-4 flex items-center justify-around gap-16'>
       <a
         href='/'
         className='focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826]'
@@ -26,7 +26,7 @@ export function Header() {
         </div>
       </a>
 
-      <form onSubmit={handleSubmit} className='flex gap-16 '>
+      <form onSubmit={handleSubmit} className='flex gap-16'>
         <div className='relative flex items-center text-shadowText-300 focus-within:text-brand-500'>
           <MagnifyingGlass className='absolute ml-3' />
           <input
