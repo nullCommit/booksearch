@@ -1,10 +1,14 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { MagnifyingGlass } from 'phosphor-react';
 
 import bookImage from '../assets/book.svg';
+// import { SearchContext } from '../SearchContext';
 
 export function Header() {
   const [search, setSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  // const data = useContext(SearchContext);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
