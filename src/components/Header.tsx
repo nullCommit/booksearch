@@ -2,8 +2,7 @@ import { FormEvent, useContext, useState } from 'react';
 import { MagnifyingGlass } from 'phosphor-react';
 
 import bookImage from '../assets/book.svg';
-import { api } from '../services/api';
-// import { SearchContext } from '../SearchContext';
+import { SearchContext } from '../SearchContext';
 
 interface SearchResults {
   id: string;
@@ -22,10 +21,12 @@ interface SearchResults {
 export function Header() {
   const [search, setSearch] = useState('');
 
-  // const data = useContext(SearchContext);
+  const { performSearch } = useContext(SearchContext);
 
   function handleSearch(event: FormEvent) {
     event.preventDefault();
+
+    performSearch(search);
   }
 
   return (

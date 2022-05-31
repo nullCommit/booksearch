@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { api } from './services/api';
+import { authorsFormatter, dateFormatter } from './util/helpers';
 
 interface SearchResults {
   id: string;
@@ -31,38 +32,36 @@ export const SearchContext = createContext<SearchContextData>(
 export function SearchProvider({ children }: SearchProviderProps) {
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
 
-  useEffect(() => {
-    api
-      .get('vampire&key=AIzaSyBjTZrhDBqJmT8_OQPItxpyYoVUposxk_s')
-      .then(response => setSearchResults(response.data.items));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get('vampire&key=AIzaSyBjTZrhDBqJmT8_OQPItxpyYoVUposxk_s')
+  //     .then(response => setSearchResults(response.data.items));
+  // }, []);
 
-  const formatter = new Intl.DateTimeFormat('pt-Br', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-  });
+  async function performSearch(search: string) {
+    const response = await api.get(
+      `${search}&key=AIzaSyBjTZrhDBqJmT8_OQPItxpyYoVUposxk_s`
+    );
 
-  function performSearch(search: string) {
-    api
-      .get(`${search}&key=AIzaSyBjTZrhDBqJmT8_OQPItxpyYoVUposxk_s`)
-      .then(response => {
-        const formattedData = response.data.items.map(item => {
-          return {
-            id: item.id,
-            volumeInfo: {
-              title: item.volumeInfo.title,
-              subtitle: item.volumeInfo.subtitle,
-              authors: item.volumeInfo.authors,
-              publishedDate: formatter.format(item.volumeInfo.publishedDate),
-              pageCount: item.volumeInfo.pageCount,
-              imageLinks: item.volumeInfo.imageLinks,
-            },
-          };
-        });
+    const formattedData = await response.data.items.map(result => {
+      return {
+        id: result.id,
+        volumeInfo: {
+          title: result.volumeInfo.title,
+          subtitle: result.volumeInfo.subtitle,
+          authors: authorsFormatter(result.volumeInfo.authors),
+          publishedDate: result.volumeInfo.publishedDate
+            ? dateFormatter.format(
+                new Date(`${result.volumeInfo.publishedDate} 00:00:00`)
+              )
+            : 'N/A',
+          pageCount: result.volumeInfo.pageCount,
+          imageLinks: result.volumeInfo.imageLinks,
+        },
+      };
+    });
 
-        setSearchResults(formattedData);
-      });
+    setSearchResults(formattedData);
   }
 
   return (

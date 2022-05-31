@@ -30,7 +30,7 @@ export function ContentCard({ content }: ContentCardProps) {
       )}
 
       <div>
-        <h1 className='font-bold text-2xl'>{content.title}</h1>
+        <h1 className='font-bold text-xl'>{content.title}</h1>
 
         <ul className='my-2 text-shadowText-100'>
           <li className='flex items-center gap-2 mb-1'>

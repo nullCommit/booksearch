@@ -9,12 +9,14 @@ export function Content() {
     <div className='flex flex-col'>
       {searchResults &&
         searchResults.map(result => (
-          <ContentCard content={result.volumeInfo} />
+          <ContentCard key={result.id} content={result.volumeInfo} />
         ))}
 
-      <a href='' className='my-7 text-brand-500 font-semibold '>
-        Carregar mais resultados
-      </a>
+      {searchResults && (
+        <a href='' className='my-7 text-brand-500 font-semibold '>
+          Carregar mais resultados
+        </a>
+      )}
     </div>
   );
 }
