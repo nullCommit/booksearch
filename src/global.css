@@ -6,7 +6,6 @@ body {
   @apply bg-[#111826] text-zinc-100 font-body;
 }
 
-a,
-button {
+a {
   @apply cursor-pointer;
 }
