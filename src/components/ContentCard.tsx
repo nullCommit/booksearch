@@ -9,6 +9,7 @@ interface ContentCardProps {
     imageLinks?: {
       thumbnail: string;
     };
+    infoLink: string;
   };
 }
 
@@ -43,10 +44,14 @@ export function ContentCard({ content }: ContentCardProps) {
             <span>{content.publishedDate}</span>
           </li>
 
-          <li className='flex items-center gap-2'>
-            <Link weight='bold' />
-            <span>See more</span>
-          </li>
+          {content.infoLink && (
+            <li className='flex items-center gap-2'>
+              <Link weight='bold' />
+              <a href={content.infoLink} target='_blank'>
+                See more
+              </a>
+            </li>
+          )}
         </ul>
       </div>
     </div>

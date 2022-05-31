@@ -1,6 +1,6 @@
 import { Content } from './components/Content';
 import { Header } from './components/Header';
-import { SearchContext, SearchProvider } from './SearchContext';
+import { SearchProvider } from './hooks/useSearch';
 
 export function App() {
   return (

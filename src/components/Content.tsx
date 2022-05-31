@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import { SearchContext } from '../SearchContext';
+import { useSearch } from '../hooks/useSearch';
 import { ContentCard } from './ContentCard';
 
 export function Content() {
-  const { searchResults } = useContext(SearchContext);
+  const { searchResults, loadNextResults } = useSearch();
 
   return (
     <div className='flex flex-col'>
@@ -13,9 +12,12 @@ export function Content() {
         ))}
 
       {searchResults && (
-        <a href='' className='my-7 text-brand-500 font-semibold '>
+        <button
+          onClick={loadNextResults}
+          className='my-7 text-brand-500 font-semibold '
+        >
           Carregar mais resultados
-        </a>
+        </button>
       )}
     </div>
   );

@@ -1,8 +1,8 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { MagnifyingGlass } from 'phosphor-react';
 
 import bookImage from '../assets/book.svg';
-import { SearchContext } from '../SearchContext';
+import { useSearch } from '../hooks/useSearch';
 
 interface SearchResults {
   id: string;
@@ -21,12 +21,14 @@ interface SearchResults {
 export function Header() {
   const [search, setSearch] = useState('');
 
-  const { performSearch } = useContext(SearchContext);
+  const { performSearch } = useSearch();
 
   function handleSearch(event: FormEvent) {
     event.preventDefault();
 
     performSearch(search);
+
+    setSearch('');
   }
 
   return (
@@ -52,6 +54,8 @@ export function Header() {
             placeholder='Search for title, author, subject...'
             onChange={e => setSearch(e.target.value)}
             value={search}
+            autoCorrect='off'
+            autoComplete='off'
           />
         </div>
 
