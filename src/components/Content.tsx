@@ -7,7 +7,7 @@ export function Content() {
   const { searchResults, loadNextResults } = useSearch();
 
   return (
-    <div className='flex flex-col h-[calc(100vh-11rem)]'>
+    <div className='flex flex-col min-h-[calc(100vh-11rem)]'>
       {searchResults &&
         searchResults.map(result => (
           <ContentCard key={result.id} content={result.volumeInfo} />
