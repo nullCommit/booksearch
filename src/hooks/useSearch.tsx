@@ -61,11 +61,11 @@ export function SearchProvider({ children }: SearchProviderProps) {
     }) as SearchResults[];
   }
 
-  useEffect(() => {
-    api
-      .get(`vampiro&startIndex=0&key=${import.meta.env.VITE_GOOGLE_API_KEY}`)
-      .then(results => setSearchResults(results.data.items));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get(`vampiro&startIndex=0&key=${import.meta.env.VITE_GOOGLE_API_KEY}`)
+  //     .then(results => setSearchResults(results.data.items));
+  // }, []);
 
   async function performSearch(search: string) {
     if (!search) return;
