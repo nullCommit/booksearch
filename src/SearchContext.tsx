@@ -19,7 +19,14 @@ interface SearchProviderProps {
   children: ReactNode;
 }
 
-export const SearchContext = createContext<SearchResults[]>([]);
+interface SearchContextData {
+  searchResults: SearchResults[];
+  performSearch: (search: string) => void;
+}
+
+export const SearchContext = createContext<SearchContextData>(
+  {} as SearchContextData
+);
 
 export function SearchProvider({ children }: SearchProviderProps) {
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
@@ -59,7 +66,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
   }
 
   return (
-    <SearchContext.Provider value={searchResults}>
+    <SearchContext.Provider value={{ searchResults, performSearch }}>
       {children}
     </SearchContext.Provider>
   );
