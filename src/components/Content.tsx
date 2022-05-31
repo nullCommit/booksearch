@@ -18,7 +18,7 @@ export function Content() {
           onClick={loadNextResults}
           className='my-7 text-brand-500 font-semibold'
         >
-          Carregar mais resultados
+          Load more results
         </button>
       ) : (
         <div className='flex flex-col flex-grow items-center justify-center'>
