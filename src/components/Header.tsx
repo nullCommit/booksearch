@@ -2,18 +2,30 @@ import { FormEvent, useContext, useState } from 'react';
 import { MagnifyingGlass } from 'phosphor-react';
 
 import bookImage from '../assets/book.svg';
+import { api } from '../services/api';
 // import { SearchContext } from '../SearchContext';
+
+interface SearchResults {
+  id: string;
+  volumeInfo: {
+    title: string;
+    subtitle: string;
+    authors: string[];
+    publishedDate: string;
+    pageCount: number;
+    imageLinks?: {
+      thumbnail: string;
+    };
+  };
+}
 
 export function Header() {
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
 
   // const data = useContext(SearchContext);
 
-  function handleSubmit(event: FormEvent) {
+  function handleSearch(event: FormEvent) {
     event.preventDefault();
-
-    return;
   }
 
   return (
@@ -30,13 +42,13 @@ export function Header() {
         </div>
       </a>
 
-      <form onSubmit={handleSubmit} className='flex gap-16'>
+      <form onSubmit={handleSearch} className='flex gap-16'>
         <div className='relative flex items-center text-shadowText-300 focus-within:text-brand-500'>
           <MagnifyingGlass className='absolute ml-3' />
           <input
             type='text'
             className='w-[30rem] bg-accent-300 pr-3 pl-10 py-2 rounded text-white placeholder:text-shadowText-300 border-0 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826]'
-            placeholder='Search for title, author, type...'
+            placeholder='Search for title, author, subject...'
             onChange={e => setSearch(e.target.value)}
             value={search}
           />
@@ -44,7 +56,6 @@ export function Header() {
 
         <button
           type='submit'
-          onClick={() => {}}
           className='bg-brand-500 rounded px-3 py-2 font-semibold hover:bg-brand-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826]'
         >
           Search
