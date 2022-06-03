@@ -20,7 +20,7 @@ export function ContentCard({ content }: ContentCardProps) {
         <img
           src={content.imageLinks.thumbnail}
           alt={content.title}
-          className='opacity-40 w-[7.5rem]'
+          className=' w-[7.5rem]'
         />
       ) : (
         <img
