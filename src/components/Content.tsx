@@ -2,9 +2,10 @@ import { useSearch } from '../hooks/useSearch';
 import { ContentCard } from './ContentCard';
 
 import openedBookImage from '../assets/opened-book.svg';
+import { Loading } from './Loading';
 
 export function Content() {
-  const { searchResults, loadNextResults } = useSearch();
+  const { searchResults, loadNextResults, isSearching } = useSearch();
 
   return (
     <div className='flex flex-col min-h-[calc(100vh-11rem)]'>
@@ -20,6 +21,8 @@ export function Content() {
         >
           Load more results
         </button>
+      ) : isSearching ? (
+        <Loading />
       ) : (
         <div className='flex flex-col flex-grow items-center justify-center mt-[-4rem]'>
           <img

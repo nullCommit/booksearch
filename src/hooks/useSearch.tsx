@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { api } from '../services/api';
 import { authorsFormatter, dateFormatter } from '../util/helpers';
 
@@ -31,6 +25,7 @@ interface SearchContextData {
   searchResults: SearchResults[];
   performSearch: (search: string) => Promise<void>;
   loadNextResults: () => Promise<void>;
+  isSearching: boolean;
 }
 
 const SearchContext = createContext<SearchContextData>({} as SearchContextData);
@@ -39,6 +34,7 @@ let nextPage: number;
 export function SearchProvider({ children }: SearchProviderProps) {
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
   const [searchInput, setSearchInput] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
 
   function dataFormatter(items: SearchResults[]) {
     return items.map(result => {
@@ -61,17 +57,12 @@ export function SearchProvider({ children }: SearchProviderProps) {
     }) as SearchResults[];
   }
 
-  // useEffect(() => {
-  //   api
-  //     .get(`vampiro&startIndex=0&key=${import.meta.env.VITE_GOOGLE_API_KEY}`)
-  //     .then(results => setSearchResults(results.data.items));
-  // }, []);
-
   async function performSearch(search: string) {
     if (!search) return;
 
     setSearchResults([]);
     setSearchInput(search);
+    setIsSearching(true);
     nextPage = 0;
 
     try {
@@ -82,10 +73,13 @@ export function SearchProvider({ children }: SearchProviderProps) {
       setSearchResults(dataFormatter(response.data.items));
     } catch (error) {
       console.log(error);
+    } finally {
+      // setIsSearching(false);
     }
   }
 
   async function loadNextResults() {
+    setIsSearching(true);
     nextPage += 11;
 
     try {
@@ -101,6 +95,8 @@ export function SearchProvider({ children }: SearchProviderProps) {
       ]);
     } catch (error) {
       console.log(error);
+    } finally {
+      // setIsSearching(false);
     }
   }
 
@@ -110,6 +106,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
         searchResults,
         performSearch,
         loadNextResults,
+        isSearching,
       }}
     >
       {children}

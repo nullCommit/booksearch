@@ -33,10 +33,7 @@ export function Header() {
 
   return (
     <div className='max-w-7xl w-full h-28 mx-auto px-4 flex items-center justify-around  md:gap-16'>
-      <a
-        href='/'
-        className='focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826]'
-      >
+      <a href='/' className='focus:outline-none'>
         <div className='flex items-center gap-3'>
           <img
             src={bookImage}
