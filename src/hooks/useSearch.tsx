@@ -74,7 +74,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
     } catch (error) {
       console.log(error);
     } finally {
-      // setIsSearching(false);
+      setIsSearching(false);
     }
   }
 
@@ -96,7 +96,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
     } catch (error) {
       console.log(error);
     } finally {
-      // setIsSearching(false);
+      setIsSearching(false);
     }
   }
 
