@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { api } from '../services/api';
-import { authorsFormatter, dateFormatter } from '../util/helpers';
+import { authorsFormatter } from '../util/helpers';
 
 interface SearchResults {
   id: string;
@@ -45,9 +45,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
           subtitle: result.volumeInfo.subtitle,
           authors: authorsFormatter(result.volumeInfo.authors),
           publishedDate: result.volumeInfo.publishedDate
-            ? dateFormatter.format(
-                new Date(`${result.volumeInfo.publishedDate} 00:00:00`)
-              )
+            ? result.volumeInfo.publishedDate
             : 'N/A',
           pageCount: result.volumeInfo.pageCount,
           imageLinks: result.volumeInfo.imageLinks,
