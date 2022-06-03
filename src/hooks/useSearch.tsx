@@ -46,7 +46,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
           authors: authorsFormatter(result.volumeInfo.authors),
           publishedDate: result.volumeInfo.publishedDate
             ? dateFormatter.format(
-                new Date(`${result.volumeInfo.publishedDate} 00:00:00`)
+                new Date(`${result.volumeInfo.publishedDate}T00:01:01.514Z`)
               )
             : 'N/A',
           pageCount: result.volumeInfo.pageCount,
