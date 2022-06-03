@@ -33,14 +33,17 @@ export function Header() {
 
   return (
     <div className='max-w-7xl w-full h-28 mx-auto px-4 flex items-center justify-around  md:gap-16'>
-      <a href='/' className='focus:outline-none'>
+      <a
+        href='/'
+        className='focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826]'
+      >
         <div className='flex items-center gap-3'>
           <img
             src={bookImage}
             alt='book'
             width={50}
             height={50}
-            className='md:w-[65px] md:w-[65px]'
+            className='md:w-[65px]'
           />
           <span className='hidden text-2xl text-brand-500 font-semibold md:block'>
             booksearch
@@ -53,7 +56,7 @@ export function Header() {
           <MagnifyingGlass className='absolute ml-3' />
           <input
             type='text'
-            className='w-[15rem] bg-accent-300 pr-3 pl-10 py-2 rounded text-white placeholder:text-shadowText-300 placeholder:text-sm border-0 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826] md:w-[20rem] md:placeholder:text-base lg:w-[30rem]'
+            className='w-[15rem] bg-accent-300 pr-3 pl-10 py-2 rounded text-white placeholder:text-shadowText-300 placeholder:text-sm border-0 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-[#111826] md:w-[20rem] md:placeholder:text-base lg:w-[37rem]'
             placeholder='Type title, author, subject...'
             onChange={e => setSearch(e.target.value)}
             value={search}

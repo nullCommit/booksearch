@@ -21,8 +21,12 @@ export function Content() {
           Load more results
         </button>
       ) : (
-        <div className='flex flex-col flex-grow items-center justify-center'>
-          <img src={openedBookImage} className='opacity-20'></img>
+        <div className='flex flex-col flex-grow items-center justify-center mt-[-4rem]'>
+          <img
+            src={openedBookImage}
+            width={200}
+            className='opacity-20 md:w-[250px]'
+          ></img>
           <span className='text-shadowText-100 font-semibold'>
             Search for a book
           </span>
